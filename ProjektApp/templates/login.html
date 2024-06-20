@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="{% url 'home_view' %}">Home</a>
+    </div>
+  </nav>
+  <br />
+
+  <div class="form-container">
+    <form method="post">
+      {% csrf_token %}
+      <label for="{{ form.username.id_for_label }}">Username</label>
+      {{ form.username }}
+      <br />
+      <label for="{{ form.password.id_for_label }}">Password</label>
+      {{ form.password }}
+      <br />
+      <input type="submit" value="Login" />
+    </form>
+  </div>
+</body>
+
+</html>

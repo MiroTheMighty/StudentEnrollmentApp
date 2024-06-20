@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Enable Enrollment</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <h2>Enable Enrollment</h2>
+    <p>Welcome, {{ user.username }}!</p>
+    <h3>Dostupni predmeti:</h3>
+    <ul>
+        {% for subject in subjects %}
+        <li>{{ subject.name }} {{ subject.id }}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{% url 'zad2' %}">
+        {% csrf_token %}
+        <label for="student_id">Student ID:</label>
+        <input type="text" name="student_id" id="student_id" value="{{ user.id }}" readonly>
+        <br>
+        <label for="subject_id">Subject ID:</label>
+        <input type="text" name="subject_id" id="subject_id">
+        <br>
+        <input type="submit" value="Enroll">
+    </form>
+</body>
+
+</html>

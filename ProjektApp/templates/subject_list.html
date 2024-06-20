@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HOME</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="{% url 'success' %}">Home</a>
+            <a href="{% url 'add_subject' %}">Add subjects</a>
+            <a href="{% url 'add_user' %}">Add user</a>
+            <a href="{% url 'create_enrollment' %}">Enroll</a>
+            <a href="{% url 'user_list' %}">Remove user</a>
+        </div>
+        <div class="nav-right">
+            {% csrf_token %}
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <h2>Subject List</h2>
+    <ul>
+        {% for subject_info in subject_data %}
+            <li><strong>{{ subject_info.subject.name }}</strong> | Položeno: {{ subject_info.total_passed }} | Redovnih: {{ subject_info.regular_passed }} | Izvanrednih: {{ subject_info.non_regular_passed }} <a href="{% url 'passed_subject_details' subject_info.subject_id %}" class="list"> <span class="space"></span>Details</a>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

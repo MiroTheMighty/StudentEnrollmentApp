@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="{% url 'success' %}">Home</a>
+            <a href="{% url 'add_subject' %}">Add subjects</a>
+            <a href="{% url 'add_user' %}">Add user</a>
+            <a href="{% url 'create_enrollment' %}">Enroll</a>
+            <a href="{% url 'user_list' %}">Remove user</a>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    {% for student in students %}
+    <div class="student-info">
+        <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+        <p>Role: {{ student.role }}</p>
+        <p>Status: {{ student.status }}</p>
+        <a href="{% url 'edit_student' student.id %}" class="list">Edit </a>
+        <span class="space"></span>
+        <a href="{% url 'enrollment_list' student.id %}" class="list">Enrollment List</a>
+    </div>
+    <hr>
+    {% endfor %}
+</body>
+
+</html>

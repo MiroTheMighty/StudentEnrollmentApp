@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Success</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="{% url 'success' %}">Home</a>
+      <a href="{% url 'add_subject' %}">Add subject</a>
+      <a href="{% url 'add_user' %}">Add user</a>
+      <a href="{% url 'create_enrollment' %}">Enroll</a>
+      <a href="{% url 'user_list' %}">Remove user</a>
+    </div>
+    <div class="nav-right">
+      <p>You are logged in as: {{ user.username }}, role {{ user.role }}!</p>
+      {% csrf_token %}
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </nav>
+  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; width: 100%;">
+    <form action="{% url 'lista_predmeta' %}" method="post">
+      {% csrf_token %}
+      <input type="submit" value="list all subjects" style="width: 150px">
+    </form>
+    <form action="{% url 'student_list' %}" method="post">
+      {% csrf_token %}
+      <input type="submit" value="list all students" style="width: 150px">
+    </form>
+    <form action="{% url 'professor_list' %}" method="post">
+      {% csrf_token %}
+      <input type="submit" value="list all professors" style="width: 150px">
+    </form>
+    <form action="{% url 'subject_list' %}" method="post">
+      {% csrf_token %}
+      <input type="submit" value="Passed students " style="width: 150px">
+    </form>
+  </div>
+</body>
+
+</html>

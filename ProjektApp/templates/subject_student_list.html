@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="{% url 'success' %}">Home</a>
+            <a href="{% url 'professor_subjects' %}">Subjects</a>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <h2>Student List for {{ subject.name }}</h2>
+    {% if students %}
+    <ul>
+        {% for student in students %}
+        <li>{{ student.first_name }} {{ student.last_name }}</li>
+        <a href="{% url 'edit_status' subject.id student.id %}" class="list">Edit Status</a>
+        <hr>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No students enrolled in this subject.</p>
+    {% endif %}
+</body>
+
+</html>

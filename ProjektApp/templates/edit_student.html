@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Student</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="{% url 'success' %}">Home</a>
+            <a href="{% url 'add_subject' %}">Add subject</a>
+            <a href="{% url 'add_user' %}" class="current">Add user</a>
+            <a href="{% url 'create_enrollment' %}">Enroll</a>
+            <a href="{% url 'user_list' %}">Remove user</a>
+            <a href="{% url 'student_list' %}">Student list</a>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Save Changes" />
+    </form>
+
+</body>
+
+</html>

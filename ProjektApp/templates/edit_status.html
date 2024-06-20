@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="{% url 'success' %}">Home</a>
+            <a href="{% url 'professor_subjects' %}">Subjects</a>
+            <a href="javascript:history.back()">Student list</a>
+            <a href="{% url 'remove_subject_student' subject_id=subject.id student_id=student.id %}">Remove student</a>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <h2>Edit Student Status for {{ subject.name }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save Changes">
+    </form>
+</body>
+
+</html>

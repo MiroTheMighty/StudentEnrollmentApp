@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Student List</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="{% url 'success' %}">Home</a>
+      <a href="{% url 'add_subject' %}">Add subject</a>
+      <a href="{% url 'add_user' %}">Add user</a>
+      <a href="{% url 'create_enrollment' %}">Enroll</a>
+      <a href="{% url 'user_list' %}">Remove user</a>
+      <a href="javascript:history.back()">Subjects list</a>
+    </div>
+    <div class="nav-right">
+      <a href="{% url 'logout' %}" class="logout">Logout</a>
+    </div>
+  </nav>
+  <br />
+  <br />
+  <br />
+  <h2>{{ predmet.name }}</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for enrollment in enrollments %}
+      <tr>
+        <td>
+          {{ enrollment.student.first_name }} {{ enrollment.student.last_name }}
+        </td>
+        <td>{{ enrollment.status }}</td>
+        <td>
+          <form method="POST" action="{% url 'remove_subjects_students' predmet.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="enrollment_id" value="{{ enrollment.id }}">
+            <input type="submit" value="Remove">
+          </form>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="3">Nema upisanih studenata za ovaj predmet.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+
+</html>

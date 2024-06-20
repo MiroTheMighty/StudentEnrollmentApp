@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Forbidden</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="{% url 'success' %}">Home</a>
+            <a href="{% url 'professor_subjects' %}">Subjects</a>
+            <a href="javascript:history.back()">Return</a>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <h1>Forbidden</h1>
+    <p>You do not have authorization do edit/delete this student</p>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>unenrolled subjects</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <style>
+        table,
+        th,
+        tr,
+        td {
+            border: 1px solid
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="{% url 'success' %}" class="current">Home</a>
+            <a href="{% url 'upisni_list' %}">Enrollment list</a>
+        </div>
+        <div class="nav-right">
+            {% csrf_token %}
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <h1>Unenrolled Subjects</h1>
+    <h2>Student: {{ student.first_name }} {{ student.last_name }}</h2>
+    <h3>Status: {{ student_status }}</h3>
+
+    <table>
+        <tr>
+            <th>Subject Name</th>
+            <th>Program</th>
+            <th>ECTS</th>
+            <th>Semester</th>
+            <th>Enroll</th>
+        </tr>
+        {% for subject in all_subjects %}
+        <tr>
+            <td>{{ subject.name }}</td>
+            <td>{{ subject.program }}</td>
+            <td>{{ subject.ects }}</td>
+            {% if student_status == 'redovan' %}
+            <td>{{ subject.sem_red }}</td>
+            {% else %}
+            <td>{{ subject.sem_izv }}</td>
+            {% endif %}
+            <td><a href="{% url 'enroll_subject' subject.id %}" class="list">Enroll</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No unenrolled subjects available.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

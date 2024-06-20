@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+  <nav>
+    <a href="{% url 'home_view' %}" class="nav-left">Home</a>
+    <a href="{% url 'login' %}" class="nav-right">Login</a>
+  </nav>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <h2>Please login to continue to the student enrollment app</h2>
+  </div>
+</body>
+
+</html>

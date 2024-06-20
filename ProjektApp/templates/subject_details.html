@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Subject Details</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="{% url 'success' %}">Home</a>
+            <a href="{% url 'professor_subjects' %}">Subjects</a>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <h2>Subject Details for {{ subject.name }}</h2>
+    <p><b>Subject Code:</b> {{ subject.kod }}</p>
+    <p><b>Program:</b> {{ subject.program }}</p>
+    <p><b>ECTS:</b> {{ subject.ects }}</p>
+    <p><b>Elective course:</b> {{ subject.izborni }}</p>
+
+</body>
+
+</html>

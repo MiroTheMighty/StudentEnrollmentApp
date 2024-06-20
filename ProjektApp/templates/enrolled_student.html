@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Enrolled subjects</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="{% url 'success' %}" class="current">Home</a>
+      <a href="{% url 'upisni_list' %}">Enrollment list</a>
+    </div>
+    <div class="nav-right">
+      {% csrf_token %}
+      <a href="{% url 'logout' %}" class="logout">Logout</a>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <br>
+  <h1>Enrolled Subjects</h1>
+
+  {% for subject in enrolled_subjects %}
+
+  <td>{{ subject.name }}</td>
+  <span class="space"></span>
+  <a href="{% url 'remove_subject_student' subject.id %}" class="list">Remove</a>
+  <hr>
+
+  {% endfor %}
+
+</body>
+
+</html>
